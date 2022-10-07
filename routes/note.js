@@ -1,4 +1,5 @@
 const note = require("express").Router().get("note");
+const { notStrictEqual } = require("assert");
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
@@ -33,3 +34,22 @@ note.post("/", (req, res) => {
         res.error("Oops! There was an error saving your note.");
     }
 });
+
+// DELETE request to remove notes from database
+note.delete("/:id", (req, res) => {
+    const noteID = req.params.id;
+    fs.readFile("./db/db.json", (err, data) => {
+        if (err) {
+            console.error(err);
+        } else {
+            noteArray = JSON.parse(data);
+            noteArray.forEach((note, idx) => {
+                if (note.id === noteID) {
+                    noteArray.splice(idx, 1);
+                }
+            });
+            writeDatabase(noteArray, res);
+        }
+    });
+});
+
