@@ -1,8 +1,6 @@
-const note = require("express").Router().get("note");
-const { notStrictEqual } = require("assert");
+const note = require("express").Router().get("notes");
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
-const { response } = require(".");
 
 var noteArray = [];
 
@@ -67,4 +65,4 @@ const writeDatabase = (noteArr, response) => {
 };
 
 // Exporting note
-module.exports = note;
+module.exports = notes;
