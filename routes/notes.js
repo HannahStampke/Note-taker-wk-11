@@ -1,11 +1,11 @@
-const note = require("express").Router().get("notes");
+const notes = require("express").Router().get("notes");
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
 var noteArray = [];
 
 // GET request to get notes from database
-noteArray.get("/", (req, res) => {
+notes.get("/", (req, res) => {
     fs.readFile("./db/db.json", (err, data) => {
         if (err) {
             console.error(err);
@@ -19,7 +19,7 @@ noteArray.get("/", (req, res) => {
 });
 
 // POST request to save new notes to database
-note.post("/", (req, res) => {
+notes.post("/", (req, res) => {
     const {title, text} = req.body;
     if (req.body) {
         const newNote = {
@@ -35,7 +35,7 @@ note.post("/", (req, res) => {
 });
 
 // DELETE request to remove notes from database
-note.delete("/:id", (req, res) => {
+notes.delete("/:id", (req, res) => {
     const noteID = req.params.id;
     fs.readFile("./db/db.json", (err, data) => {
         if (err) {
