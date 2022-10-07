@@ -2,6 +2,7 @@ const note = require("express").Router().get("note");
 const { notStrictEqual } = require("assert");
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
+const { response } = require(".");
 
 var noteArray = [];
 
@@ -53,3 +54,17 @@ note.delete("/:id", (req, res) => {
     });
 });
 
+// function to make the note array and database connect (hopefully!)
+const writeDatabase = (noteArr, response) => {
+    fs.writeFile("./db/db.json", JSON.stringify(noteArr), (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            response.json(noteArr);
+            console.log("Success! Bravo.")
+        }
+    });
+};
+
+// Exporting note
+module.exports = note;
