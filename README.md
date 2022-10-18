@@ -1,7 +1,7 @@
 # Note Taker - Week 11
 
 ### Heroku URL: https://note-taker-wk-11.herokuapp.com/
-### GitHub URL:https://github.com/HannahStampke/Note-taker-wk-11
+### GitHub URL: https://github.com/HannahStampke/Note-taker-wk-11
 ### Website Screenshots:
 ![Main page of Note Taker](./Assets/evidence.png)
 
